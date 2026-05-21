@@ -34,7 +34,7 @@ w-full
 
 <div className="
 flex
-flex-col
+flex-col sm:flex-row
 justify-center
 text-center
 md:text-left
@@ -142,6 +142,8 @@ text-white
 px-6
 py-3
 rounded-full
+w-full
+sm:w-auto
 text-center
 "
 >
@@ -167,6 +169,8 @@ border-[#3b2a1f]
 px-6
 py-3
 rounded-full
+w-full
+sm:w-auto
 text-center
 "
 >

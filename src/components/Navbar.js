@@ -84,22 +84,7 @@ font-medium
 
 {/* MOBILE MENU */}
 
-<div className="
-md:hidden
-flex
-gap-5
-text-sm
-text-[#3b2a1f]
-font-medium
-">
-
-<a href="#about">About</a>
-
-<a href="#project">Project</a>
-
-<a href="#contact">Contact</a>
-
-</div>
+<div className="md:hidden"></div>
 
 
 

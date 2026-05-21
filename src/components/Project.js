@@ -480,8 +480,8 @@ bg-[#faf6f2]
 border
 border-[#e3d5ca]
 rounded-2xl
-w-[100px]
-h-[90px]
+w-[120px]
+h-[100px]
 md:w-[130px]
 md:h-[105px]
 flex
@@ -529,8 +529,10 @@ bg-[#faf6f2]
 border
 border-[#e3d5ca]
 rounded-2xl
-w-[130px]
-h-[105px]
+w-[120px]
+h-[100px]
+md:w-[130px]
+md:h-[105px]
 flex
 flex-col
 justify-center
@@ -569,6 +571,7 @@ Frontend
 
 
 
+
 <a
 href="https://github.com/akhilacodesss/real-estate-website-be"
 target="_blank"
@@ -578,8 +581,10 @@ bg-[#faf6f2]
 border
 border-[#e3d5ca]
 rounded-2xl
-w-[130px]
-h-[105px]
+w-[120px]
+h-[100px]
+md:w-[130px]
+md:h-[105px]
 flex
 flex-col
 justify-center
@@ -611,7 +616,6 @@ Backend
 </a>
 
 
-
 </div>
 
 </div>
@@ -636,7 +640,12 @@ DEMO CREDENTIALS
 
 
 
-<div className="flex gap-4 flex-col sm:flex-row" >
+<div className="
+flex
+flex-col
+sm:flex-row
+gap-4
+">
 
 
 <div className="
@@ -650,25 +659,16 @@ shadow-sm
 ">
 
 <h4 className="font-semibold mb-3">
-
 👤 User
-
 </h4>
 
-
 <p className="text-sm">
-
 user@gmail.com
-
 </p>
 
-
 <p className="text-sm mt-2">
-
 test1
-
 </p>
-
 
 </div>
 
@@ -685,30 +685,22 @@ bg-[#faf6f2]
 border
 rounded-2xl
 p-4
-w-[150px]
+w-full
+sm:w-[150px]
 shadow-sm
 ">
 
 <h4 className="font-semibold mb-3">
-
 🛡️ Admin
-
 </h4>
 
-
 <p className="text-sm">
-
 admin@gmail.com
-
 </p>
-
 
 <p className="text-sm mt-2">
-
 test
-
 </p>
-
 
 </div>
 
@@ -725,37 +717,27 @@ bg-[#faf6f2]
 border
 rounded-2xl
 p-4
-w-[150px]
+w-full
+sm:w-[150px]
 shadow-sm
 ">
 
 <h4 className="font-semibold mb-3">
-
 🧑‍💼 Agent
-
 </h4>
 
-
 <p className="text-sm">
-
 agent@gmail.com
-
 </p>
-
 
 <p className="text-sm mt-2">
-
 test
-
 </p>
 
-
 </div>
 
 
-
 </div>
-
 
 </div>
 

@@ -154,10 +154,10 @@ md:text-left
 
 
 <div className="
-max-w-[600px]
+max-w-[600px] break-words
 mx-auto
 text-[#2f2f2f]
-text-[18px]
+text-[16px] md:text-[20px]
 md:text-[20px]
 leading-[1.8]
 ">
