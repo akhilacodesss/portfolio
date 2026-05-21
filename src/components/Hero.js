@@ -34,7 +34,7 @@ w-full
 
 <div className="
 flex
-flex-col sm:flex-row
+flex-col 
 justify-center
 text-center
 md:text-left
