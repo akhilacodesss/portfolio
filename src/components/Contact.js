@@ -1,344 +1,379 @@
-import butterfly2 from "../assests/decor/butterfly2.png";
-
-function Contact() {
-
-return (
-
-<section
-id="contact"
-className="
-bg-[#f3ede8]
-pt-14
-pb-4
-px-8
-scroll-mt-24
-"
->
-
-<div className="
-max-w-5xl
-mx-auto
-text-center
-relative
-overflow-visible
-">
-
-
-{/*  BUTTERFLY  */}
-
-<img
-src={butterfly2}
-alt=""
-className="
-hidden
-md:block
-absolute
-left-[-200px]
-bottom-[58px]
-w-[260px]
-"
-/>
-
-
-
-
-
-
-
-
-<p className="
-uppercase
-tracking-[8px]
-text-sm
-text-[#7a604f]
-mb-2
-">
-
-CONTACT
-
-</p>
-
-
-
-
-
-
-
-
-<h2 className="
-text-[56px]
-md:text-[68px]
-font-serif
-font-bold
-text-[#3b2a1f]
-leading-none
-mb-2
-">
-
-Open for Work
-
-</h2>
-
-
-
-
-
-
-
-
-<div className="
-w-16
-h-[2px]
-bg-[#3b2a1f]
-mx-auto
-my-4
-"/>
-
-
-
-
-
-
-
-
-
-<p className="
-text-[18px]
-md:text-[20px]
-leading-[1.8]
-max-w-2xl
-mx-auto
-text-[#5a483c]
-mb-10
-px-4
-">
-
-Building modern and responsive web experiences through clean design and functional development.
-
-</p>
-
-
-
-
-
-
-
-
-
-
-
-{/* GITHUB + LINKEDIN */}
-
-<div className="
-flex
-justify-center
-gap-12
-md:gap-20
-text-[18px]
-md:text-[20px]
-mb-6
-flex-wrap
-">
-
-
-<a
-href="https://github.com/akhilacodesss/"
-target="_blank"
-rel="noopener noreferrer"
-className="
-flex
-items-center
-gap-3
-hover:-translate-y-1
-transition
-">
-
-<i className="
-fa-brands
-fa-github
-text-xl
-md:text-2xl
-"></i>
-
-GitHub
-
-</a>
-
-
-
-
-
-
-
-
-<a
-href="https://www.linkedin.com/in/akhila-goud-278b8537b/"
-target="_blank"
-rel="noopener noreferrer"
-className="
-flex
-items-center
-gap-3
-hover:-translate-y-1
-transition
-">
-
-<i className="
-fa-brands
-fa-linkedin
-text-xl
-md:text-2xl
-"></i>
-
-LinkedIn
-
-</a>
-
-
-</div>
-
-
-
-
-
-
-
-
-
-{/* EMAIL + LOCATION */}
-
-<div className="
-flex
-justify-center
-gap-10
-md:gap-16
-text-[16px]
-md:text-[18px]
-text-[#5a483c]
-mb-12
-flex-wrap
-">
-
-
-<div className="
-flex
-items-center
-gap-3
-">
-
-<i className="
-fa-solid
-fa-envelope
-"></i>
-
-akhila.goundla1112@gmail.com
-
-</div>
-
-
-
-
-
-
-
-
-<div className="
-flex
-items-center
-gap-3
-">
-
-<i className="
-fa-solid
-fa-location-dot
-"></i>
-
-Hyderabad, India
-
-</div>
-
-
-</div>
-
-
-
-
-
-
-
-
-
-
-
-{/* DIVIDER */}
-
-<div className="
-flex
-items-center
-w-screen
-relative
-left-1/2
-translate-x-[-50%]
-mb-4
-">
-
-<div className="
-flex-1
-h-[1px]
-bg-[#cbb8a9]
-"/>
-
-
-<div className="
-px-4
-text-[#7a604f]
-text-sm
-">
-
-✦
-
-</div>
-
-
-<div className="
-flex-1
-h-[1px]
-bg-[#cbb8a9]
-"/>
-
-
-</div>
-
-
-
-
-
-
-
-
-
-
-<p className="
-text-[14px]
-md:text-[18px]
-text-[#5a483c]
-font-medium
-tracking-[1px]
-pb-1
-">
-
-© 2026 Akhila • Built with React & Tailwind
-
-</p>
-
-
-
-</div>
-
-</section>
-
-);
-
+import { useState } from "react";
+
+import { C } from "../styles/tokens";
+
+import LineIn from "./ui/LineIn";
+import Up from "./ui/Up";
+import DrawRule from "./ui/DrawRule";
+
+export default function Contact() {
+  const [form, setForm] = useState({
+    name: "",
+    email: "",
+    message: "",
+  });
+
+  const [copied, setCopied] = useState(false);
+
+  const maxChars = 500;
+
+  const submit = (e) => {
+    e.preventDefault();
+
+    window.location.href =
+      `mailto:akhila.goundla1112@gmail.com?subject=Portfolio Contact from ${form.name}&body=${encodeURIComponent(
+        `Name: ${form.name}\nEmail: ${form.email}\n\n${form.message}`
+      )}`;
+  };
+
+  const copyEmail = () => {
+    navigator.clipboard
+      .writeText("akhila.goundla1112@gmail.com")
+      .then(() => {
+        setCopied(true);
+        setTimeout(() => setCopied(false), 2000);
+      });
+  };
+
+  return (
+    <section
+      id="contact"
+      style={{
+        background: C.cream,
+        padding: "clamp(80px,11vh,140px) clamp(20px,5vw,72px)",
+      }}
+    >
+      <div style={{ maxWidth: 1320, margin: "0 auto" }}>
+        <div style={{ marginBottom: "clamp(56px,8vh,96px)" }}>
+          <LineIn>
+            <h2
+              style={{
+                fontFamily: C.serif,
+                fontWeight: 300,
+                letterSpacing: "-2px",
+                fontSize: "clamp(56px,10vw,140px)",
+                lineHeight: 0.88,
+                color: C.wine,
+              }}
+            >
+              Let's build
+            </h2>
+          </LineIn>
+
+          <LineIn delay={0.12}>
+            <h2
+              style={{
+                fontFamily: C.serif,
+                fontWeight: 300,
+                letterSpacing: "-2px",
+                fontSize: "clamp(56px,10vw,140px)",
+                lineHeight: 0.88,
+                color: C.copper,
+                fontStyle: "italic",
+              }}
+            >
+              something real.
+            </h2>
+          </LineIn>
+        </div>
+
+        <DrawRule delay={0.2} />
+
+        <div
+          style={{
+            marginTop: 64,
+            display: "grid",
+            gridTemplateColumns: "1fr 1.3fr",
+            gap: "clamp(40px,6vw,100px)",
+            alignItems: "start",
+          }}
+          className="contact-grid"
+        >
+          <Up delay={0.1}>
+            <p
+              style={{
+                fontFamily: C.sans,
+                fontSize: 15,
+                lineHeight: 1.9,
+                color: C.mist,
+                fontWeight: 300,
+                marginBottom: 48,
+              }}
+            >
+              Seeking full-stack developer opportunities where I can build
+              impactful products, grow as an engineer, and contribute to
+              real-world applications.
+            </p>
+
+            {[
+              {
+                label: "Email",
+                value: "akhila.goundla1112@gmail.com",
+                href: "mailto:akhila.goundla1112@gmail.com",
+                copyable: true,
+              },
+              {
+                label: "GitHub",
+                value: "github.com/akhilacodesss",
+                href: "https://github.com/akhilacodesss/",
+              },
+              {
+                label: "LinkedIn",
+                value: "linkedin.com/in/akhila-goud",
+                href: "https://www.linkedin.com/in/akhila-goud-278b8537b/",
+              },
+            ].map(({ label, value, href, copyable }) => (
+              <div
+                key={label}
+                style={{
+                  display: "flex",
+                  gap: 20,
+                  padding: "15px 0",
+                  borderBottom: `1px solid ${C.ghost}`,
+                  alignItems: "baseline",
+                  justifyContent: "space-between",
+                }}
+              >
+                <a
+                  href={href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  data-c
+                  style={{
+                    display: "flex",
+                    gap: 20,
+                    textDecoration: "none",
+                    alignItems: "baseline",
+                    flex: 1,
+                    transition:
+                      "padding-left .3s cubic-bezier(.16,1,.3,1)",
+                  }}
+                  onMouseEnter={(e) =>
+                    (e.currentTarget.style.paddingLeft = "10px")
+                  }
+                  onMouseLeave={(e) =>
+                    (e.currentTarget.style.paddingLeft = "0")
+                  }
+                >
+                  <span
+                    style={{
+                      fontFamily: C.mono,
+                      fontSize: 9,
+                      letterSpacing: 2.5,
+                      textTransform: "uppercase",
+                      color: C.mist,
+                      width: 68,
+                      flexShrink: 0,
+                    }}
+                  >
+                    {label}
+                  </span>
+
+                  <span
+                    style={{
+                      fontFamily: C.sans,
+                      fontSize: 13,
+                      color: C.wine,
+                      transition: "color .25s",
+                    }}
+                    onMouseEnter={(e) =>
+                      (e.currentTarget.style.color = C.copper)
+                    }
+                    onMouseLeave={(e) =>
+                      (e.currentTarget.style.color = C.wine)
+                    }
+                  >
+                    {value}
+                  </span>
+                </a>
+
+                {copyable && (
+                  <button
+                    data-c
+                    onClick={copyEmail}
+                    style={{
+                      background: "none",
+                      border: "none",
+                      cursor: "none",
+                      fontFamily: C.mono,
+                      fontSize: 9,
+                      letterSpacing: 1.5,
+                      textTransform: "uppercase",
+                      color: copied ? "#8BC18A" : C.mist,
+                      transition: "color .3s",
+                      padding: 0,
+                      flexShrink: 0,
+                    }}
+                  >
+                    {copied ? "copied ✓" : "copy"}
+                  </button>
+                )}
+              </div>
+            ))}
+          </Up>
+
+          <Up delay={0.2}>
+            <form
+              onSubmit={submit}
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                gap: 30,
+              }}
+            >
+              <div
+                style={{
+                  display: "grid",
+                  gridTemplateColumns: "1fr 1fr",
+                  gap: 24,
+                }}
+              >
+                {[
+                  ["Name", "name", "text", "Your name"],
+                  ["Email", "email", "email", "your@email.com"],
+                ].map(([l, f, t, ph]) => (
+                  <div key={f}>
+                    <label
+                      style={{
+                        fontFamily: C.mono,
+                        fontSize: 9,
+                        letterSpacing: 2.5,
+                        textTransform: "uppercase",
+                        color: C.dusty,
+                        display: "block",
+                        marginBottom: 10,
+                      }}
+                    >
+                      {l}
+                    </label>
+
+                    <input
+                      type={t}
+                      value={form[f]}
+                      onChange={(e) =>
+                        setForm({
+                          ...form,
+                          [f]: e.target.value,
+                        })
+                      }
+                      placeholder={ph}
+                      required
+                      style={{
+                        width: "100%",
+                        padding: "11px 0",
+                        border: "none",
+                        borderBottom: `1px solid ${C.ghost}`,
+                        background: "transparent",
+                        fontFamily: C.sans,
+                        fontSize: 14,
+                        color: C.wine,
+                        outline: "none",
+                        transition: "border-color .25s",
+                      }}
+                    />
+                  </div>
+                ))}
+              </div>
+
+              <div>
+                <div
+                  style={{
+                    display: "flex",
+                    justifyContent: "space-between",
+                    alignItems: "baseline",
+                    marginBottom: 10,
+                  }}
+                >
+                  <label
+                    style={{
+                      fontFamily: C.mono,
+                      fontSize: 9,
+                      letterSpacing: 2.5,
+                      textTransform: "uppercase",
+                      color: C.dusty,
+                    }}
+                  >
+                    Message
+                  </label>
+
+                  <span
+                    style={{
+                      fontFamily: C.mono,
+                      fontSize: 9,
+                      color:
+                        form.message.length > maxChars * 0.8
+                          ? C.copper
+                          : C.mist,
+                    }}
+                  >
+                    {form.message.length} / {maxChars}
+                  </span>
+                </div>
+
+                <textarea
+                  value={form.message}
+                  onChange={(e) => {
+                    if (e.target.value.length <= maxChars) {
+                      setForm({
+                        ...form,
+                        message: e.target.value,
+                      });
+                    }
+                  }}
+                  placeholder="What are you building?"
+                  rows={4}
+                  required
+                  style={{
+                    width: "100%",
+                    padding: "11px 0",
+                    border: "none",
+                    borderBottom: `1px solid ${C.ghost}`,
+                    background: "transparent",
+                    fontFamily: C.sans,
+                    fontSize: 14,
+                    color: C.wine,
+                    outline: "none",
+                    resize: "none",
+                  }}
+                />
+              </div>
+
+              <div>
+                <button
+                  type="submit"
+                  data-c
+                  style={{
+                    fontFamily: C.sans,
+                    fontSize: 10,
+                    letterSpacing: 3,
+                    textTransform: "uppercase",
+                    fontWeight: 700,
+                    background: C.wine,
+                    color: C.ink,
+                    border: "none",
+                    padding: "14px 36px",
+                    borderRadius: 2,
+                    cursor: "none",
+                    transition:
+                      "background .25s, transform .25s",
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.background = C.plum;
+                    e.currentTarget.style.transform =
+                      "translateY(-2px)";
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.background = C.wine;
+                    e.currentTarget.style.transform = "none";
+                  }}
+                >
+                  Send Message →
+                </button>
+              </div>
+            </form>
+          </Up>
+        </div>
+      </div>
+    </section>
+  );
 }
-
-export default Contact;

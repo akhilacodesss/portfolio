@@ -1,26 +1,5 @@
-import Navbar from "./components/Navbar";
-import Hero from "./components/Hero";
-import About from "./components/About";
-import Skills from "./components/Skills";
-import Project from "./components/Project";
-import Certification from "./components/Certification";
+import Portfolio from "./Portfolio";
 
-import Contact from "./components/Contact";
-// import Footer from "./components/Footer";
-
-function App() {
-  return (
-    <>
-      <Navbar />
-      <Hero />
-      <About />
-      <Skills />
-      <Project />
-      <Certification />
-      <Contact />
-      
-    </>
-  );
+export default function App() {
+  return <Portfolio />;
 }
-
-export default App;

@@ -1,128 +1,111 @@
-function Navbar() {
+import { useState } from "react";
+import { C } from "../styles/tokens";
+import useScrollY from "../hooks/useScrollY";
 
-return (
+export default function Navbar({ active }) {
+  const scrollY = useScrollY();
+  const scrolled = scrollY > 60;
+  const isDarkZone = scrollY < window.innerHeight * 0.85;
+  const [menuOpen, setMenuOpen] = useState(false);
+  const go = (id) => { document.getElementById(id)?.scrollIntoView({ behavior: "smooth" }); setMenuOpen(false); };
 
-<>
+  const textColor = isDarkZone ? `${C.ink}cc` : `${C.wine}bb`;
+  const logoColor = isDarkZone ? C.ink : C.wine;
+  const navBg = scrolled ? (isDarkZone ? `${C.deep}ee` : `${C.paper}ee`) : "transparent";
+  const navLinks = [["about", "About"], ["projects", "Work"], ["skills", "Skills"], ["certifications", "Certs"], ["contact", "Contact"]];
 
-<nav className="
-fixed
-top-0
-w-full
-bg-[#f3ede8]
-border-b
-border-[#cbb8a9]
-z-50
-">
+  return (
+    <>
+      <header style={{
+        position: "fixed", top: 0, left: 0, right: 0, zIndex: 200,
+        background: navBg,
+        backdropFilter: scrolled ? "blur(24px)" : "none",
+        borderBottom: scrolled ? `1px solid ${isDarkZone ? "#ffffff10" : C.ghost}` : "1px solid transparent",
+        transition: "background .5s, border-color .5s",
+      }}>
+        <div style={{ maxWidth: 1320, margin: "0 auto", padding: "0 clamp(20px,5vw,72px)", height: 58, display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+          <button onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })} data-c style={{ background: "none", border: "none", cursor: "none", padding: 0 }}>
+            <span style={{ fontFamily: C.serif, fontSize: 20, letterSpacing: 3, color: logoColor, fontStyle: "italic", transition: "color .4s" }}>AG</span>
+          </button>
 
-<div className="
-max-w-7xl
-mx-auto
-flex
-justify-between
-items-center
-px-4
-md:px-2
-py-4
-md:py-5
-">
+          {/* Desktop nav */}
+          <div className="desktop-nav" style={{ display: "flex", gap: 32, alignItems: "center" }}>
+            {navLinks.map(([id, label]) => (
+              <button key={id} onClick={() => go(id)} data-c style={{
+                background: "none", border: "none", cursor: "none",
+                fontFamily: C.sans, fontSize: 10, letterSpacing: 2.5, textTransform: "uppercase", fontWeight: 500,
+                color: active === id ? C.copper : textColor,
+                transition: "color .4s", padding: "4px 0", position: "relative",
+              }}>
+                {label}
+                {active === id && (
+                  <span style={{ position: "absolute", bottom: -2, left: 0, right: 0, height: 1, background: C.copper, borderRadius: 1 }} />
+                )}
+              </button>
+            ))}
+            <button
+              onClick={() => window.open("/resume.pdf", "_blank")}
+              data-c
+              style={{
+                fontFamily: C.sans,
+                fontSize: 10,
+                letterSpacing: 2.5,
+                textTransform: "uppercase",
+                fontWeight: 700,
+                background: C.copper,
+                color: "#fff",
+                border: "none",
+                padding: "9px 24px",
+                borderRadius: 2,
+                cursor: "none",
+                transition: "background .25s,transform .25s",
+              }}
+              onMouseEnter={e => {
+                e.currentTarget.style.background = C.plum;
+                e.currentTarget.style.transform = "translateY(-1px)";
+              }}
+              onMouseLeave={e => {
+                e.currentTarget.style.background = C.copper;
+                e.currentTarget.style.transform = "none";
+              }}
+            >
+              Resume
+            </button>
+          </div>
 
+          {/* Mobile hamburger */}
+          <button className="mobile-menu-btn" onClick={() => setMenuOpen(o => !o)} style={{
+            display: "none", background: "none", border: "none", cursor: "pointer", padding: 8, flexDirection: "column", gap: 5,
+          }}>
+            {[0, 1, 2].map(i => (
+              <span key={i} style={{
+                display: "block", width: 22, height: 1.5, background: isDarkZone ? C.ink : C.wine, borderRadius: 1,
+                transform: menuOpen ? (i === 0 ? "rotate(45deg) translate(4px,4px)" : i === 2 ? "rotate(-45deg) translate(4px,-4px)" : "scaleX(0)") : "none",
+                transition: "transform .25s",
+              }} />
+            ))}
+          </button>
+        </div>
+      </header>
 
-{/* LOGO */}
-
-<a
-href="#home"
-className="
-text-[#3b2a1f]
-font-bold
-text-lg
-md:text-xl
-hover:text-[#7a604f]
-transition
-"
->
-
-AKHILA
-
-</a>
-
-
-
-
-
-
-
-
-{/* LINKS */}
-
-<ul className="
-hidden
-md:flex
-gap-8
-text-[#3b2a1f]
-font-medium
-">
-
-<li><a href="#about">About</a></li>
-
-<li><a href="#skills">Skills</a></li>
-
-<li><a href="#project">Project</a></li>
-
-<li><a href="#certification">Certification</a></li>
-
-<li><a href="#contact">Contact</a></li>
-
-</ul>
-
-
-
-
-
-
-
-
-
-{/* MOBILE MENU */}
-
-<div className="md:hidden"></div>
-
-
-
-
-
-
-
-
-
-<a
-href="#contact"
-className="
-bg-[#3b2a1f]
-text-white
-px-4
-md:px-5
-py-2
-rounded-full
-text-sm
-md:text-base
-"
->
-
-Hire Me
-
-</a>
-
-
-
-</div>
-
-</nav>
-
-
-</>
-
-);
-
+      {/* Mobile slide menu */}
+      <div style={{
+        position: "fixed", top: 58, left: 0, right: 0, zIndex: 199,
+        background: `${C.deep}f8`, backdropFilter: "blur(24px)",
+        transform: menuOpen ? "translateY(0)" : "translateY(-110%)",
+        transition: "transform .4s cubic-bezier(.16,1,.3,1)",
+        padding: "24px clamp(20px,5vw,72px) 32px",
+        borderBottom: `1px solid ${C.wine}`,
+      }}>
+        {navLinks.map(([id, label]) => (
+          <button key={id} onClick={() => go(id)} style={{
+            display: "block", width: "100%", textAlign: "left", background: "none", border: "none",
+            fontFamily: C.sans, fontSize: 14, letterSpacing: 2.5, textTransform: "uppercase", fontWeight: 500,
+            color: active === id ? C.copper : `${C.ink}bb`,
+            padding: "16px 0", borderBottom: `1px solid ${C.wine}`, cursor: "pointer",
+          }}>{label}</button>
+        ))}
+      </div>
+    </>
+  );
 }
-
-export default Navbar;
