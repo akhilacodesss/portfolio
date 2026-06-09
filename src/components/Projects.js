@@ -1,40 +1,40 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 
 import { C } from "../styles/tokens";
 import { PROJECTS } from "../data/projects";
 import useInView from "../hooks/useInView";
 
-/* ─────────────────────────────────────────────────────────
-   SCREENSHOT BROWSER MOCKUP
-   - Real project screenshots cycle inside a macOS-style browser frame
-   - Dot indicators + keyboard-style prev/next arrows
-   - Subtle cross-fade between slides (no jarring jump cuts)
-   - On hover the frame lifts and casts a deeper shadow
-───────────────────────────────────────────────────────── */
+
 function ScreenshotMockup({ project, hov }) {
   const { isDark, screenshots, live, palette } = project;
   const [current, setCurrent] = useState(0);
-  const [fading, setFading]   = useState(false);
+  const [fading, setFading] = useState(false);
   const timerRef = useRef(null);
 
-  // Auto-advance every 3 s; pause on hover
-  useEffect(() => {
-    if (hov) { clearInterval(timerRef.current); return; }
-    timerRef.current = setInterval(() => advance(1), 3000);
-    return () => clearInterval(timerRef.current);
-  }, [hov, current, screenshots.length]);
 
-  function advance(dir) {
+  const advance = useCallback((dir) => {
     setFading(true);
     setTimeout(() => {
       setCurrent(i => (i + dir + screenshots.length) % screenshots.length);
       setFading(false);
     }, 220);
+  }, [screenshots.length]);
+
+  // Auto-advance every 3 s; pause on hover
+ useEffect(() => {
+  if (hov) {
+    clearInterval(timerRef.current);
+    return;
   }
 
+  timerRef.current = setInterval(() => advance(1), 3000);
+
+  return () => clearInterval(timerRef.current);
+}, [hov, current, screenshots.length, advance]);
+
   const accentBorder = isDark ? C.plum : C.ghost;
-  const chromeBar    = isDark ? C.plum : "#E8D9D0";
-  const urlColor     = isDark ? `${C.rose}77` : C.mist;
+  const chromeBar = isDark ? C.plum : "#E8D9D0";
+  const urlColor = isDark ? `${C.rose}77` : C.mist;
 
   return (
     <div style={{
@@ -197,8 +197,8 @@ function ScreenshotMockup({ project, hov }) {
 ───────────────────────────────────────────────────────── */
 function ProjectBlock({ p, flipped }) {
   const [hov, setHov] = useState(false);
-  const [ref, vis]    = useInView(.05);
-  const txt = p.isDark ? C.ink   : C.wine;
+  const [ref, vis] = useInView(.05);
+  const txt = p.isDark ? C.ink : C.wine;
   const sub = p.isDark ? `${C.rose}99` : C.mist;
 
   return (
@@ -232,7 +232,7 @@ function ProjectBlock({ p, flipped }) {
         <div style={{
           position: "absolute",
           right: flipped ? "auto" : "clamp(16px,3vw,48px)",
-          left:  flipped ? "clamp(16px,3vw,48px)" : "auto",
+          left: flipped ? "clamp(16px,3vw,48px)" : "auto",
           top: "50%",
           transform: "translateY(-50%)",
           fontFamily: C.serif,
