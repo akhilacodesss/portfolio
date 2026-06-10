@@ -83,7 +83,10 @@ export default function Contact() {
           style={{
             marginTop: 64,
             display: "grid",
-            gridTemplateColumns: "1fr 1.3fr",
+            gridTemplateColumns:
+              window.innerWidth < 768
+                ? "1fr"
+                : "1fr 1.3fr",
             gap: "clamp(40px,6vw,100px)",
             alignItems: "start",
           }}
@@ -224,7 +227,10 @@ export default function Contact() {
               <div
                 style={{
                   display: "grid",
-                  gridTemplateColumns: "1fr 1fr",
+                  gridTemplateColumns:
+                    window.innerWidth < 768
+                      ? "1fr"
+                      : "1fr 1fr",
                   gap: 24,
                 }}
               >

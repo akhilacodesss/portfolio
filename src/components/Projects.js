@@ -21,16 +21,16 @@ function ScreenshotMockup({ project, hov }) {
   }, [screenshots.length]);
 
   // Auto-advance every 3 s; pause on hover
- useEffect(() => {
-  if (hov) {
-    clearInterval(timerRef.current);
-    return;
-  }
+  useEffect(() => {
+    if (hov) {
+      clearInterval(timerRef.current);
+      return;
+    }
 
-  timerRef.current = setInterval(() => advance(1), 3000);
+    timerRef.current = setInterval(() => advance(1), 3000);
 
-  return () => clearInterval(timerRef.current);
-}, [hov, current, screenshots.length, advance]);
+    return () => clearInterval(timerRef.current);
+  }, [hov, current, screenshots.length, advance]);
 
   const accentBorder = isDark ? C.plum : C.ghost;
   const chromeBar = isDark ? C.plum : "#E8D9D0";
@@ -39,6 +39,8 @@ function ScreenshotMockup({ project, hov }) {
   return (
     <div style={{
       borderRadius: 10,
+      width: "100%",
+      maxWidth: "100%",
       overflow: "hidden",
       border: `1px solid ${accentBorder}`,
       transform: hov ? "scale(1.018) translateY(-8px)" : "scale(1)",
@@ -236,7 +238,10 @@ function ProjectBlock({ p, flipped }) {
           top: "50%",
           transform: "translateY(-50%)",
           fontFamily: C.serif,
-          fontSize: "clamp(160px,24vw,320px)",
+          fontSize:
+            window.innerWidth < 768
+              ? "120px"
+              : "clamp(160px,24vw,320px)",
           fontWeight: 300,
           lineHeight: 1,
           color: p.isDark ? `${C.plum}40` : `${C.ghost}60`,
@@ -314,7 +319,12 @@ function ProjectBlock({ p, flipped }) {
           onMouseLeave={() => setHov(false)}
           style={{
             display: "grid",
-            gridTemplateColumns: flipped ? "1fr 1.5fr" : "1.5fr 1fr",
+            gridTemplateColumns:
+              window.innerWidth < 768
+                ? "1fr"
+                : flipped
+                  ? "1fr 1.5fr"
+                  : "1.5fr 1fr",
             gap: "clamp(32px,5vw,80px)",
             alignItems: "start",
           }}

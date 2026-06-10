@@ -15,6 +15,7 @@ export default function Hero() {
     "Open to Opportunities"
   ];
   const typed = useTyper(roles, 75, 2000);
+const isMobile = window.innerWidth < 768;
 
   useEffect(() => { const t = setTimeout(() => setIn(true), 80); return () => clearTimeout(t); }, []);
   const go = (id) => document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
@@ -36,7 +37,8 @@ export default function Hero() {
       <div style={{ position: "absolute", top: "-10%", left: "30%", width: "70vw", height: "70vw", maxWidth: 900, borderRadius: "50%", background: `radial-gradient(circle, ${C.plum}60 0%, transparent 65%)`, pointerEvents: "none", zIndex: 0 }} />
 
       {/* Top-right identity chip */}
-      <div style={{ position: "absolute", top: 90, right: "clamp(20px,5vw,72px)", textAlign: "right", zIndex: 2, opacity: in_ ? 1 : 0, transition: "opacity 1.2s ease 1.3s" }}>
+      <div style={{
+  display: isMobile ? "none" : "block", position: "absolute", top: 90, right: "clamp(20px,5vw,72px)", textAlign: "right", zIndex: 2, opacity: in_ ? 1 : 0, transition: "opacity 1.2s ease 1.3s" }}>
         <div style={{ fontFamily: C.mono, fontSize: 9, letterSpacing: 2, color: `${C.rose}66`, marginBottom: 6 }}>akhila.goundla1112@gmail.com</div>
         <div style={{ fontFamily: C.mono, fontSize: 9, letterSpacing: 2, color: `${C.rose}44` }}>Hyderabad · India</div>
         <div style={{ width: 1, height: 40, background: `${C.rose}30`, margin: "14px auto" }} />

@@ -16,7 +16,7 @@ function SkillCard({ card, i }) {
       style={{
         border: `1px solid ${C.ghost}`,
         borderRadius: 4,
-        padding: 24,
+        padding: window.innerWidth < 768 ? 18 : 24,
         background: "transparent",
         opacity: vis ? 1 : 0,
         transform: vis ? "none" : "translateX(-16px)",
@@ -83,7 +83,12 @@ export default function Skills() {
   return (
     <section id="skills" style={{ background: C.paper, padding: "clamp(80px,11vh,140px) clamp(20px,5vw,72px)" }}>
       <div style={{ maxWidth: 1320, margin: "0 auto" }}>
-        <div style={{ display: "grid", gridTemplateColumns: "280px 1fr", gap: "clamp(40px,6vw,100px)", alignItems: "start" }} className="skills-grid">
+        <div style={{
+          display: "grid", gridTemplateColumns:
+            window.innerWidth < 768
+              ? "1fr"
+              : "280px 1fr", gap: "clamp(40px,6vw,100px)", alignItems: "start"
+        }} className="skills-grid">
           <div>
             <LineIn><h2 style={{ fontFamily: C.serif, fontSize: "clamp(36px,4vw,54px)", fontWeight: 400, lineHeight: 1.1, color: C.wine }}>Technical</h2></LineIn>
             <LineIn delay={.1}><h2 style={{ fontFamily: C.serif, fontSize: "clamp(36px,4vw,54px)", fontWeight: 300, fontStyle: "italic", lineHeight: 1.1, color: C.copper }}>fluency.</h2></LineIn>
@@ -115,7 +120,10 @@ export default function Skills() {
             style={{
               paddingTop: 8,
               display: "grid",
-              gridTemplateColumns: "repeat(2, minmax(280px, 1fr))",
+              gridTemplateColumns:
+                window.innerWidth < 768
+                  ? "1fr"
+                  : "repeat(2, minmax(280px, 1fr))",
               gap: 24,
             }}
           >

@@ -24,7 +24,15 @@ export default function Resume() {
             </Up>
           </div>
 
-          <Up delay={.25} style={{ display: "flex", gap: 14, flexWrap: "wrap" }}>
+          <Up
+            delay={.25}
+            style={{
+              display: "flex",
+              gap: 14,
+              flexWrap: "wrap",
+              width: "100%",
+            }}
+          >
             <a
               href="/resume.pdf"
               target="_blank"

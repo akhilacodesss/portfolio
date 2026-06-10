@@ -11,7 +11,10 @@ export default function Certifications() {
   return (
     <section id="certifications" style={{ background:C.paper, padding:"clamp(80px,11vh,140px) clamp(20px,5vw,72px)" }}>
       <div style={{ maxWidth:1320, margin:"0 auto" }}>
-        <div style={{ display:"grid", gridTemplateColumns:"1fr 1fr", gap:"clamp(40px,6vw,100px)", alignItems:"center" }} className="cert-grid">
+        <div style={{ display:"grid", gridTemplateColumns:
+  window.innerWidth < 768
+    ? "1fr"
+    : "1fr 1fr", gap:"clamp(40px,6vw,100px)", alignItems:"center" }} className="cert-grid">
           <div>
             <LineIn><h2 style={{ fontFamily:C.serif, fontSize:"clamp(36px,4.5vw,60px)", fontWeight:400, lineHeight:1.1, color:C.wine }}>Verified</h2></LineIn>
             <LineIn delay={.12}><h2 style={{ fontFamily:C.serif, fontSize:"clamp(36px,4.5vw,60px)", fontWeight:300, fontStyle:"italic", lineHeight:1.1, color:C.copper }}>learning.</h2></LineIn>
@@ -48,7 +51,7 @@ export default function Certifications() {
 
           <Up delay={.15}>
             {/* Flip card */}
-            <div data-c style={{ perspective:1000, cursor:"none", height:320 }}
+            <div data-c style={{ perspective:1000, cursor:"none", height: window.innerWidth < 768 ? 280 : 320 }}
               onMouseEnter={()=>setFlipped(true)}
               onMouseLeave={()=>setFlipped(false)}
             >
