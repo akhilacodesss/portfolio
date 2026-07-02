@@ -8,6 +8,10 @@ import jobhubHome      from "../assets/jobhub/homepage.png";
 import jobhubJobs      from "../assets/jobhub/job-listings.png";
 import jobhubRecruiter from "../assets/jobhub/recruiter-dashboard.png";
 
+import medicareHome     from "../assets/medicare/homepage.png";
+import medicareDoctor   from "../assets/medicare/doctor-dashboard.png";
+import medicareAdmin    from "../assets/medicare/admin-dashboard.png";
+
 export const PROJECTS = [
   {
     slug: "brickly",
@@ -66,5 +70,34 @@ export const PROJECTS = [
     featured: false,
     palette: { bg: C.deep, accent: C.rose },
     isDark: true,
+  },
+  {
+    slug: "medicare",
+    name: "MediCare",
+    screenshots: [
+      { src: medicareHome,   label: "Homepage" },
+      { src: medicareDoctor, label: "Doctor Dashboard" },
+      { src: medicareAdmin,  label: "Admin Dashboard" },
+    ],
+    tagline: "Care that finds you, not the other way around.",
+    category: "Healthcare Appointment System",
+    year: "2024",
+    desc: "A full-stack appointment platform connecting patients, doctors, and admins in one system — patients discover doctors and book visits, doctors manage slots and revenue, admins oversee the whole network. JWT-secured RBAC across three distinct roles, live analytics, and a rescheduling flow that actually holds up under real use.",
+    challenge: "Three roles, three very different needs, one codebase. The hard part was slot management — keeping a doctor's availability, a patient's booking, and an admin's overview all consistent the moment a slot is taken, cancelled, or rescheduled.",
+    features: [
+      "Patient · Doctor · Admin roles",
+      "JWT auth + role-based access",
+      "Doctor slot & holiday-mode management",
+      "Appointment booking, cancel & reschedule",
+      "Admin analytics dashboard",
+      "Revenue & status charts (Recharts)",
+    ],
+    stack: ["React.js", "Node.js", "Express.js", "MongoDB", "JWT", "Tailwind CSS", "Recharts"],
+    live: "https://medi-cure.netlify.app",
+    fe:   "https://github.com/akhilacodesss/medicure-fe",
+    be:   "https://github.com/akhilacodesss/medicure-be",
+    featured: false,
+    palette: { bg: C.paper, accent: C.copper },
+    isDark: false,
   },
 ];
