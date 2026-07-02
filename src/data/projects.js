@@ -23,7 +23,6 @@ export const PROJECTS = [
     ],
     tagline: "Where properties find their people.",
     category: "Real Estate Platform",
-    year: "2024",
     desc: "A full-stack real estate platform built for all three sides — users browsing listings, agents managing properties, admins controlling the platform. JWT-secured role-based access, property search & filtering, wishlists, and a dedicated agent dashboard.",
     challenge: "Keeping the frontend perfectly in sync with the backend was the core challenge — especially the agent dashboard, where property status changes needed to reflect instantly across multiple views.",
     features: [
@@ -52,7 +51,6 @@ export const PROJECTS = [
     ],
     tagline: "Connecting talent with opportunity.",
     category: "Job Portal",
-    year: "2024",
     desc: "A full-stack job portal connecting job seekers and recruiters through a clean application and management workflow. JWT authentication, admin dashboards, job search with filters, and messaging.",
     challenge: "Designing one codebase that serves two completely different user types — job seeker and recruiter — without ever feeling like two apps stitched together.",
     features: [
@@ -81,7 +79,6 @@ export const PROJECTS = [
     ],
     tagline: "Care that finds you, not the other way around.",
     category: "Healthcare Appointment System",
-    year: "2024",
     desc: "A full-stack appointment platform connecting patients, doctors, and admins in one system — patients discover doctors and book visits, doctors manage slots and revenue, admins oversee the whole network. JWT-secured RBAC across three distinct roles, live analytics, and a rescheduling flow that actually holds up under real use.",
     challenge: "Three roles, three very different needs, one codebase. The hard part was slot management — keeping a doctor's availability, a patient's booking, and an admin's overview all consistent the moment a slot is taken, cancelled, or rescheduled.",
     features: [
